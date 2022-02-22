@@ -21,6 +21,8 @@ if (!process.env.DISABLE_XORIGIN) {
   });
 }
 
+app.use("/public", express.static(__dirname + "/public"));
+
 // app.get("/", function(req, res){
 //   res.send("Hello Express");
 // })
