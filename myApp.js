@@ -2,6 +2,12 @@ var express = require('express');
 var app = express();
 require('dotenv').config();
 
+// 7) Mount the logger middleware here
+app.use(function(req, res, next) {
+  console.log(req.method + " " + req.path + " - " + req.ip);
+  next();
+});
+
 // 1) Meet the node console
 console.log('Hello World');
 
@@ -34,6 +40,9 @@ app.get("/json", function(req, res){
   }
   res.json(jsonResponse);
 });
+
+// 7) Root-level Middleware - A logger. Pleace it before all the routes
+
 
 
  module.exports = app;
