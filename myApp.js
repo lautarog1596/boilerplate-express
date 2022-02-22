@@ -3,7 +3,8 @@ var app = express();
 require('dotenv').config();
 var bGround = require('fcc-express-bground');
 
-// 7) Mount the logger middleware here
+// 7) Root-level Middleware - A logger. Pleace it before all the routes
+// Mount the logger middleware here
 app.use(function(req, res, next) {
   console.log(req.method + " " + req.path + " - " + req.ip);
   next();
@@ -43,7 +44,14 @@ app.get("/json", function(req, res){
   res.json(jsonResponse);
 });
 
-// 7) Root-level Middleware - A logger. Pleace it before all the routes
+// 8) Chaining middleware. A Time server
+app.get("/now", function(req, res, next){
+  req.time = new Date().toString();
+  next();
+  }, function(req, res){
+    res.json({ time: req.time });
+  }
+);
 
 
 
