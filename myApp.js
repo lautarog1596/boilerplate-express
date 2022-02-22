@@ -1,39 +1,29 @@
 var express = require('express');
 var app = express();
 
+// 1) Meet the node console
 console.log('Hello World');
 
+// 2) A first work Express Server
+// app.get("/", function(req, res){
+//   res.send("Hello Express");
+// })
 
+// 3) Serve an HTML file
+app.get("/", function(req, res){
+  let path = __dirname + "/views/index.html";
+  res.sendFile(path);
+})
 
+// 4) Serve a static asset
+app.use("/public", express.static(__dirname + "/public"));
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+// 5) serve JSON on a specific route
+app.get("/json", function(req, res){
+  res.json({
+    "message": "Hello json"
+  });
+});
 
 
  module.exports = app;

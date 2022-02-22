@@ -21,16 +21,16 @@ if (!process.env.DISABLE_XORIGIN) {
   });
 }
 
-app.use("/public", express.static(__dirname + "/public"));
+// app.use("/public", express.static(__dirname + "/public"));
+
+// // app.get("/", function(req, res){
+// //   res.send("Hello Express");
+// // })
 
 // app.get("/", function(req, res){
-//   res.send("Hello Express");
+//   let path = __dirname + "/views/index.html";
+//   res.sendFile(path);
 // })
-
-app.get("/", function(req, res){
-  let path = __dirname + "/views/index.html";
-  res.sendFile(path);
-})
 
 
 var port = process.env.PORT || 3000;
