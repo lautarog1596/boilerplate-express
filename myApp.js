@@ -2,13 +2,20 @@ var express = require('express');
 var app = express();
 require('dotenv').config();
 var bGround = require('fcc-express-bground');
+var bodyParser = require('body-parser');
 
 // 7) Root-level Middleware - A logger. Pleace it before all the routes
-// Mount the logger middleware here
+// 7) Mount the logger middleware here
 app.use(function(req, res, next) {
   console.log(req.method + " " + req.path + " - " + req.ip);
   next();
 });
+
+// 11) Mount the body-parser middleware here
+// parse application/x-www-form-urlencoded
+app.use(bodyParser.urlencoded({ extended: false }));
+// parse application/json
+app.use(bodyParser.json());
 
 // 1) Meet the node console
 console.log('Hello World');
