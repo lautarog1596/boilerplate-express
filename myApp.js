@@ -1,5 +1,6 @@
 var express = require('express');
 var app = express();
+require('dotenv').config();
 
 // 1) Meet the node console
 console.log('Hello World');
@@ -19,10 +20,19 @@ app.get("/", function(req, res){
 app.use("/public", express.static(__dirname + "/public"));
 
 // 5) serve JSON on a specific route
-app.get("/json", function(req, res){
+/* app.get("/json", function(req, res){
   res.json({
     "message": "Hello json"
   });
+}); */
+
+// 6) Use the .env file to configure the app
+app.get("/json", function(req, res){
+  let jsonResponse = { "message": "Hello json" };
+  if(process.env.MESSAGE_STYLE === "uppercase"){
+    jsonResponse.message = jsonResponse.message.toUpperCase();
+  }
+  res.json(jsonResponse);
 });
 
 
